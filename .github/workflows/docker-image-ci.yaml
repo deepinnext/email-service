@@ -52,7 +52,6 @@ jobs:
           git checkout -b $BRANCH_NAME
           sed --in-place 's|image: .*$|image: ${{ vars.DOCKER_USERNAME }}/email-service:${{ github.sha }}|'  argocd/email-service/base/deployment.yaml
           sed --in-place 's|newTag: .*$|newTag: ${{ github.sha }}|' argocd/email-service/nas/kustomization.yaml
-          sed --in-place 's|newTag: .*$|newTag: ${{ github.sha }}|' argocd/email-service/prod/kustomization.yaml
           git add .
           git commit -m "Update email-service image tag to ${{ github.sha }}"
           git push origin $BRANCH_NAME
